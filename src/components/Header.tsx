@@ -30,7 +30,7 @@ export function Header({ onSearch, activeCategory, onCategoryChange }: HeaderPro
             <button
               className="lg:hidden"
               onClick={() => setMobileMenu(!mobileMenu)}
-              aria-label="Menu"
+              aria-label="القائمة"
             >
               {mobileMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -39,7 +39,7 @@ export function Header({ onSearch, activeCategory, onCategoryChange }: HeaderPro
                 <span className="text-lg font-black text-primary-foreground font-body">S</span>
               </div>
               <span className="text-xl font-black tracking-tight font-body hidden sm:inline">
-                SPORTSPULSE
+                سبورتس بالس
               </span>
             </Link>
           </div>
@@ -68,10 +68,10 @@ export function Header({ onSearch, activeCategory, onCategoryChange }: HeaderPro
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search news..."
+                  placeholder="ابحث في الأخبار..."
                   className="h-9 w-48 rounded-lg border border-input bg-muted px-3 text-sm font-body focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                <Button type="submit" size="sm" variant="ghost" className="ml-1">
+                <Button type="submit" size="sm" variant="ghost" className="ms-1">
                   <Search className="h-4 w-4" />
                 </Button>
               </form>

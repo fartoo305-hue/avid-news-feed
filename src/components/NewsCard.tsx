@@ -24,7 +24,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute top-3 left-3">
+          <div className="absolute top-3 start-3">
             <span className="rounded-full bg-primary px-2.5 py-1 text-[11px] font-bold text-primary-foreground font-body uppercase tracking-wide">
               {article.category}
             </span>

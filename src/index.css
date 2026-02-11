@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -48,7 +48,7 @@
     --shadow-card: 0 2px 8px -2px hsl(220 20% 10% / 0.08);
     --shadow-elevated: 0 12px 40px -12px hsl(220 20% 10% / 0.15);
 
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Cairo', system-ui, sans-serif;
   }
 
   .dark {
@@ -98,16 +98,16 @@
     @apply bg-background text-foreground antialiased;
   }
   h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cairo', sans-serif;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cairo', sans-serif;
   }
   .font-body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Cairo', system-ui, sans-serif;
   }
   .gradient-hero {
     background: var(--gradient-hero);
