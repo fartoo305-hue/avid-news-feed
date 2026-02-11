@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Share2, Twitter, Facebook, Link as LinkIcon, Clock } from "lucide-react";
+import { ArrowRight, Share2, Twitter, Facebook, Link as LinkIcon, Clock } from "lucide-react";
 import { articles } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -12,9 +12,9 @@ export default function ArticlePage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-2">Article not found</h1>
+          <h1 className="text-2xl font-bold mb-2">المقال غير موجود</h1>
           <Link to="/" className="text-primary font-body hover:underline">
-            Back to home
+            العودة إلى الرئيسية
           </Link>
         </div>
       </div>
@@ -30,8 +30,8 @@ export default function ArticlePage() {
           to="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground font-body mb-6 transition-colors"
         >
-          <ArrowLeft className="h-4 w-4" />
-          Back to news
+          <ArrowRight className="h-4 w-4" />
+          العودة إلى الأخبار
         </Link>
 
         <motion.article
@@ -74,7 +74,7 @@ export default function ArticlePage() {
           <div className="border-t border-border pt-6">
             <div className="flex items-center gap-3">
               <Share2 className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-semibold font-body">Share this article</span>
+              <span className="text-sm font-semibold font-body">شارك هذا المقال</span>
             </div>
             <div className="flex gap-2 mt-3">
               <Button
@@ -83,8 +83,8 @@ export default function ArticlePage() {
                 onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(article.title)}`, "_blank")}
                 className="font-body"
               >
-                <Twitter className="h-4 w-4 mr-1.5" />
-                Twitter
+                <Twitter className="h-4 w-4 me-1.5" />
+                تويتر
               </Button>
               <Button
                 variant="outline"
@@ -92,8 +92,8 @@ export default function ArticlePage() {
                 onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank")}
                 className="font-body"
               >
-                <Facebook className="h-4 w-4 mr-1.5" />
-                Facebook
+                <Facebook className="h-4 w-4 me-1.5" />
+                فيسبوك
               </Button>
               <Button
                 variant="outline"
@@ -103,8 +103,8 @@ export default function ArticlePage() {
                 }}
                 className="font-body"
               >
-                <LinkIcon className="h-4 w-4 mr-1.5" />
-                Copy Link
+                <LinkIcon className="h-4 w-4 me-1.5" />
+                نسخ الرابط
               </Button>
             </div>
           </div>

@@ -13,7 +13,7 @@ export function HeroSection({ article }: HeroSectionProps) {
       <div className="relative h-[400px] md:h-[500px]">
         <img
           src={heroImage}
-          alt="Breaking news"
+          alt="أخبار عاجلة"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -27,7 +27,7 @@ export function HeroSection({ article }: HeroSectionProps) {
           <div className="flex items-center gap-3 mb-3">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground font-body uppercase tracking-wide">
               <span className="h-2 w-2 rounded-full bg-primary-foreground animate-pulse-live" />
-              Breaking
+              عاجل
             </span>
             <span className="text-sm text-white/70 font-body">{article.date}</span>
           </div>

@@ -8,14 +8,14 @@ import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { articles, Category } from "@/data/mockData";
 
 const Index = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [activeCategory, setActiveCategory] = useState<Category>("الكل");
   const [searchQuery, setSearchQuery] = useState("");
 
   const breakingArticle = articles.find((a) => a.isBreaking) || articles[0];
 
   const filteredArticles = useMemo(() => {
     let filtered = articles.filter((a) => a.id !== breakingArticle.id);
-    if (activeCategory !== "All") {
+    if (activeCategory !== "الكل") {
       filtered = filtered.filter((a) => a.category === activeCategory);
     }
     if (searchQuery) {
@@ -46,14 +46,14 @@ const Index = () => {
           <div className="flex-1">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-black">
-                {activeCategory === "All" ? "Trending News" : activeCategory}
+                {activeCategory === "الكل" ? "الأخبار الرائجة" : activeCategory}
               </h2>
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
                   className="text-sm text-primary font-body hover:underline"
                 >
-                  Clear search
+                  مسح البحث
                 </button>
               )}
             </div>
@@ -66,8 +66,8 @@ const Index = () => {
               </div>
             ) : (
               <div className="text-center py-12 text-muted-foreground font-body">
-                <p className="text-lg">No articles found.</p>
-                <p className="text-sm mt-1">Try a different category or search term.</p>
+                <p className="text-lg">لم يتم العثور على مقالات.</p>
+                <p className="text-sm mt-1">جرّب فئة مختلفة أو مصطلح بحث آخر.</p>
               </div>
             )}
           </div>
@@ -82,7 +82,7 @@ const Index = () => {
 
       <footer className="border-t border-border mt-12 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground font-body">
-          <p>© 2025 SportsPulse. All rights reserved.</p>
+          <p>© ٢٠٢٥ سبورتس بالس. جميع الحقوق محفوظة.</p>
         </div>
       </footer>
 
