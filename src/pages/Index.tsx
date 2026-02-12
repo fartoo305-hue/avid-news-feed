@@ -1,10 +1,13 @@
 import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { NewsCard } from "@/components/NewsCard";
 import { LiveScores } from "@/components/LiveScores";
 import { LeagueTable } from "@/components/LeagueTable";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { AdPlaceholder } from "@/components/AdPlaceholder";
 import { articles, Category } from "@/data/mockData";
 
 const Index = () => {
@@ -39,6 +42,7 @@ const Index = () => {
       />
 
       <main className="container mx-auto px-4 py-6">
+        <AdPlaceholder position="header" />
         <HeroSection article={breakingArticle} />
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -75,17 +79,24 @@ const Index = () => {
           {/* Sidebar */}
           <aside className="w-full lg:w-80 shrink-0 space-y-6">
             <LiveScores />
+            <AdPlaceholder position="sidebar" />
             <LeagueTable />
           </aside>
         </div>
       </main>
 
       <footer className="border-t border-border mt-12 py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground font-body">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground font-body space-y-2">
+          <div className="flex justify-center gap-4 flex-wrap">
+            <Link to="/privacy" className="hover:text-foreground transition-colors">سياسة الخصوصية</Link>
+            <Link to="/contact" className="hover:text-foreground transition-colors">اتصل بنا</Link>
+            <a href="https://wa.me/201070366961" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">قناتنا على واتساب</a>
+          </div>
           <p>© ٢٠٢٥ سبورتس بالس. جميع الحقوق محفوظة.</p>
         </div>
       </footer>
 
+      <WhatsAppButton />
       <NewsletterPopup />
     </div>
   );

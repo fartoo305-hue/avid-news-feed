@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { ArrowRight, Share2, Twitter, Facebook, Link as LinkIcon, Clock } from "lucide-react";
+import { WhatsAppShareButton } from "@/components/WhatsAppButton";
 import { articles } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -106,6 +107,7 @@ export default function ArticlePage() {
                 <LinkIcon className="h-4 w-4 me-1.5" />
                 نسخ الرابط
               </Button>
+              <WhatsAppShareButton title={article.title} url={shareUrl} />
             </div>
           </div>
         </motion.article>

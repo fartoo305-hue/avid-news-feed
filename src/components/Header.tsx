@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, MessageCircle } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -85,6 +85,15 @@ export function Header({ onSearch, activeCategory, onCategoryChange }: HeaderPro
                 <Search className="h-5 w-5" />
               </Button>
             )}
+            <a
+              href="https://wa.me/201070366961"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1 rounded-full bg-[#25D366] px-3 py-1.5 text-xs font-bold text-white font-body transition-transform hover:scale-105"
+            >
+              <MessageCircle className="h-3.5 w-3.5" />
+              قناتنا
+            </a>
             <ThemeToggle />
           </div>
         </div>
