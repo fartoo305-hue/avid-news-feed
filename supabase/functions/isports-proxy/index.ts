@@ -5,6 +5,27 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+const PRIMARY_BASE = 'http://api.isportsapi.com/sport';
+const FALLBACK_BASE = 'http://api2.isportsapi.com/sport';
+
+async function fetchWithFallback(endpoint: string, apiKey: string, params: Record<string, string> = {}) {
+  for (const base of [PRIMARY_BASE, FALLBACK_BASE]) {
+    try {
+      const url = new URL(`${base}/${endpoint}`);
+      url.searchParams.set('api_key', apiKey);
+      Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
+      
+      console.log('Fetching iSports:', url.toString());
+      const res = await fetch(url.toString());
+      if (res.ok) return await res.json();
+      console.error(`Non-OK from ${base}:`, res.status);
+    } catch (err) {
+      console.error(`Failed ${base}:`, err.message);
+    }
+  }
+  throw new Error('All iSports API endpoints failed');
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -19,22 +40,7 @@ serve(async (req) => {
     }
 
     const { endpoint, params } = await req.json();
-
-    // iSports API base URL
-    const baseUrl = 'https://api.isportsapi.com/sport';
-    const url = new URL(`${baseUrl}/${endpoint}`);
-    url.searchParams.set('api_key', apiKey);
-
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => {
-        url.searchParams.set(key, String(value));
-      });
-    }
-
-    console.log('Fetching iSports:', url.pathname);
-
-    const response = await fetch(url.toString());
-    const data = await response.json();
+    const data = await fetchWithFallback(endpoint, apiKey, params || {});
 
     return new Response(JSON.stringify(data), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

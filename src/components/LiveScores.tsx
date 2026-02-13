@@ -1,6 +1,7 @@
 import { liveMatches } from "@/data/mockData";
 import { useLiveScores } from "@/hooks/useLiveScores";
-import { Loader2 } from "lucide-react";
+import { Loader2, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function LiveScores() {
   const { matches, loading, error } = useLiveScores();
@@ -29,14 +30,27 @@ export function LiveScores() {
               </div>
               <span className="font-semibold flex-1 text-start">{match.awayTeam}</span>
             </div>
-            <div className="text-center mt-1">
+            <div className="flex items-center justify-center gap-2 mt-1">
               <span className={`text-[10px] font-bold font-body ${match.isLive ? "text-live" : "text-muted-foreground"}`}>
                 {match.isLive && "● "}{match.minute}
               </span>
+              {match.isLive && (
+                <a
+                  href={`https://wa.me/201070366961?text=${encodeURIComponent(`⚽ ${match.homeTeam} ${match.homeScore}-${match.awayScore} ${match.awayTeam}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#25D366] hover:scale-110 transition-transform"
+                >
+                  <MessageCircle className="h-3 w-3" />
+                </a>
+              )}
             </div>
           </div>
         ))}
       </div>
+      <Link to="/matches" className="block text-center mt-4 text-xs font-bold text-primary hover:underline font-body">
+        عرض جميع المباريات ←
+      </Link>
     </div>
   );
 }
