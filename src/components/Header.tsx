@@ -45,6 +45,12 @@ export function Header({ onSearch, activeCategory, onCategoryChange }: HeaderPro
           </div>
 
           <nav className="hidden lg:flex items-center gap-1">
+            <Link
+              to="/matches"
+              className="px-3 py-2 text-sm font-semibold rounded-md transition-colors font-body text-live hover:bg-muted"
+            >
+              ⚽ المباريات
+            </Link>
             {categories.map((cat) => (
               <button
                 key={cat}

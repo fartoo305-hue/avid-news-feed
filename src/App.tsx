@@ -9,6 +9,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ContactUs from "./pages/ContactUs";
 import AuthPage from "./pages/AuthPage";
 import AdminPage from "./pages/AdminPage";
+import LiveMatchesPage from "./pages/LiveMatchesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,8 @@ const App = () => (
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/matches" element={<LiveMatchesPage />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

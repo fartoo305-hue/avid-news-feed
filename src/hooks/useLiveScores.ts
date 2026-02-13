@@ -20,7 +20,7 @@ export function useLiveScores() {
   const fetchScores = useCallback(async () => {
     try {
       const { data, error: fnError } = await supabase.functions.invoke("isports-proxy", {
-        body: { endpoint: "football/match/recent", params: {} },
+        body: { endpoint: "football/livescores", params: {} },
       });
 
       if (fnError) throw fnError;
@@ -32,9 +32,9 @@ export function useLiveScores() {
           awayTeam: m.awayName || m.awayTeamName || "—",
           homeScore: Number(m.homeScore ?? 0),
           awayScore: Number(m.awayScore ?? 0),
-          minute: m.minute || m.matchTime || "—",
-          league: m.leagueName || m.competitionName || "",
-          isLive: m.status === "playing" || m.state === 2,
+          minute: m.status === 1 ? "الشوط الأول" : m.status === 3 ? "الشوط الثاني" : m.status === 2 ? "استراحة" : m.status === -1 ? "انتهت" : "لم تبدأ",
+          league: m.leagueName || m.leagueShortName || "",
+          isLive: m.status === 1 || m.status === 3,
         }));
         setMatches(mapped);
         setError(null);
