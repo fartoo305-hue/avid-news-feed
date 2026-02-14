@@ -59,6 +59,39 @@ export type Database = {
         }
         Relationships: []
       }
+      match_streams: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          match_id: string
+          match_label: string
+          stream_source: string
+          stream_url: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          match_id: string
+          match_label?: string
+          stream_source?: string
+          stream_url: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          match_id?: string
+          match_label?: string
+          stream_source?: string
+          stream_url?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
