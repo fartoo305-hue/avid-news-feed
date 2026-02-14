@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Plus, Trash2, Edit, ArrowRight, LogOut } from "lucide-react";
+import { Plus, Trash2, Edit, ArrowRight, LogOut, Rss, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -81,6 +81,25 @@ export default function AdminPage() {
     fetchArticles();
   };
 
+  const [fetchingRss, setFetchingRss] = useState(false);
+
+  const handleFetchRss = async () => {
+    setFetchingRss(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const { data, error: fnError } = await supabase.functions.invoke("fetch-rss-news", {
+        headers: { Authorization: `Bearer ${session?.access_token}` },
+      });
+      if (fnError) throw fnError;
+      toast({ title: "تم جلب الأخبار", description: `تمت إضافة ${data?.inserted || 0} مقال جديد` });
+      fetchArticles();
+    } catch (err: any) {
+      toast({ title: "خطأ", description: err.message, variant: "destructive" });
+    } finally {
+      setFetchingRss(false);
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/");
@@ -97,6 +116,10 @@ export default function AdminPage() {
             <h1 className="text-2xl font-black">لوحة التحكم</h1>
           </div>
           <Button variant="ghost" size="sm" onClick={handleLogout}><LogOut className="h-4 w-4 me-1" /> خروج</Button>
+          <Button variant="outline" size="sm" onClick={handleFetchRss} disabled={fetchingRss}>
+            {fetchingRss ? <Loader2 className="h-4 w-4 me-1 animate-spin" /> : <Rss className="h-4 w-4 me-1" />}
+            جلب أخبار RSS
+          </Button>
         </div>
 
         {/* Form */}
