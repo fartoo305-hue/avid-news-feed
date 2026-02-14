@@ -10,6 +10,7 @@ import ContactUs from "./pages/ContactUs";
 import AuthPage from "./pages/AuthPage";
 import AdminPage from "./pages/AdminPage";
 import LiveMatchesPage from "./pages/LiveMatchesPage";
+import StreamPage from "./pages/StreamPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,7 +29,7 @@ const App = () => (
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/matches" element={<LiveMatchesPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/stream/:matchId" element={<StreamPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

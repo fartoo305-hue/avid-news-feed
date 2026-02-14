@@ -1,6 +1,8 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Tv } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface MatchCardProps {
+  id?: string;
   homeTeam: string;
   awayTeam: string;
   homeScore: number;
@@ -8,21 +10,29 @@ interface MatchCardProps {
   minute: string;
   league: string;
   isLive: boolean;
+  hasStream?: boolean;
 }
 
-export function MatchCard({ homeTeam, awayTeam, homeScore, awayScore, minute, league, isLive }: MatchCardProps) {
+export function MatchCard({ id, homeTeam, awayTeam, homeScore, awayScore, minute, league, isLive, hasStream }: MatchCardProps) {
   const whatsappMsg = encodeURIComponent(`⚽ ${homeTeam} ${homeScore} - ${awayScore} ${awayTeam} | ${minute}`);
 
   return (
     <div className="rounded-xl border border-border bg-card p-4 shadow-card transition-shadow hover:shadow-md">
       <div className="flex items-center justify-between mb-2">
         <span className="text-[11px] text-muted-foreground font-body uppercase tracking-wide">{league}</span>
-        {isLive && (
-          <span className="flex items-center gap-1 text-[11px] font-bold text-live font-body">
-            <span className="h-2 w-2 rounded-full bg-live animate-pulse-live" />
-            مباشر
-          </span>
-        )}
+        <div className="flex items-center gap-2">
+          {hasStream && (
+            <Link to={`/stream/${id}`} className="text-live hover:scale-110 transition-transform" title="بث مباشر">
+              <Tv className="h-4 w-4" />
+            </Link>
+          )}
+          {isLive && (
+            <span className="flex items-center gap-1 text-[11px] font-bold text-live font-body">
+              <span className="h-2 w-2 rounded-full bg-live animate-pulse-live" />
+              مباشر
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="flex items-center justify-between text-sm font-body">
