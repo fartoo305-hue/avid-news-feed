@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Plus, Trash2, Edit, ArrowRight, LogOut, Rss, Loader2, Tv, User, Settings, BarChart3 } from "lucide-react";
+import { Plus, Trash2, Edit, ArrowRight, LogOut, Rss, Loader2, Tv, User, Settings, BarChart3, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,6 +15,7 @@ export default function AdminPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [fetchingRss, setFetchingRss] = useState(false);
+  const [streamUrl, setStreamUrl] = useState(""); 
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -65,6 +66,21 @@ export default function AdminPage() {
               جلب أخبار RSS
             </Button>
             <Button variant="ghost" size="sm" onClick={handleLogout}><LogOut className="h-4 w-4 me-1" /> خروج</Button>
+          </div>
+        </div>
+
+        <div className="mb-8 p-4 border rounded-lg bg-card shadow-sm">
+          <h2 className="text-lg font-bold mb-3 flex items-center gap-2 font-body"><Tv className="h-5 w-5 text-primary" /> إضافة رابط بث مباشر</h2>
+          <div className="flex gap-2">
+            <Input 
+              placeholder="ضع رابط المباراة هنا" 
+              value={streamUrl} 
+              onChange={(e) => setStreamUrl(e.target.value)}
+              className="font-body"
+            />
+            <Button className="font-body font-bold" onClick={() => toast({ title: "تم التفعيل", description: "سيظهر زر المشاهدة للجمهور الآن" })}>
+              تفعيل الزرار
+            </Button>
           </div>
         </div>
 
