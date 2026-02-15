@@ -8,7 +8,6 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // هذا السطر هو الأهم لعمل الموقع على GitHub Pages
   base: '/avid-news-feed/',
   plugins: [
     react(),
