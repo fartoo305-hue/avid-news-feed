@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { X, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+
+const MotionDiv = forwardRef<HTMLDivElement, any>((props, ref) => (
+  <motion.div ref={ref} {...props} />
+));
+MotionDiv.displayName = "MotionDiv";
 
 export function NewsletterPopup() {
   const [show, setShow] = useState(false);
